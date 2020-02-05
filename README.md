@@ -8,18 +8,6 @@ Pre-Requisites
 - Clone the repository
 
 
-
-Access Tools
------------
-
-| *services* | *Link* | *Credentials* |
-| ------------- | ------------- | ------------- |
-| Jenkins | http://localhost:8080/ | no login required |
-| SonarQube | http://localhost:9000/ | admin/admin |
-| Portainer | http://localhost:8000/ | no login required |
-| mediawiki | http://localhost:8001/ | no login required |
-
-
 QuickStart
 -----------
 - To Start containers in the background
@@ -32,4 +20,14 @@ QuickStart
 	`` 
 	$ docker-compose down
 	``
-	
+
+Access Tools
+-----------
+
+| *services* | *Link* | *Credentials* |
+| ------------- | ------------- | ------------- |
+| Jenkins | http://localhost:8080/ | no login required |
+| SonarQube | http://localhost:9000/ | admin/admin |
+| Portainer | http://localhost:8000/ | no login required |
+| mediawiki | http://localhost:8001/ | no login required |
+
