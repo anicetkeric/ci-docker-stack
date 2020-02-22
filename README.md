@@ -3,9 +3,9 @@ Docker Compose builds Jenkins , Sonar, Portainer, mediawiki
 
 Pre-Requisites
 -------------
-- Docker (for Mac OSX / Windows / Docker) => [Docker install documentation](https://docs.docker.com/install/)
-- Docker Compose
-- Clone the repository
+- Install [Docker](https://docs.docker.com/install/) (for Mac OSX / Windows / Docker)
+- Install [Docker Compose](https://docs.docker.com/compose/install/)
+- Clone this repository
 
 
 QuickStart
