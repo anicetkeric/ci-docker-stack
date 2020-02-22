@@ -1,4 +1,9 @@
 version: '3.2'
+
+volumes:
+  portainer_data:
+
+
 services:
   sonarqube:
     build:
@@ -7,6 +12,7 @@ services:
       - 9000:9000
       - 9092:9092
     container_name: sonarqube
+    restart: always
   jenkins:
     build:
       context: jenkins/
@@ -16,6 +22,7 @@ services:
       - 8080:8080
       - 50000:50000
     container_name: jenkins
+    restart: always
     volumes:
       - /tmp/jenkins:/var/jenkins_home #Remember that, the tmp directory is designed to be wiped on system reboot.
       - /var/run/docker.sock:/var/run/docker.sock
@@ -35,22 +42,25 @@ services:
       - 8000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
 # ------------------------------------------------------------------------------
 # DOCUMENTATION SECTION
 #------------------------------------------------------------------------------
   wiki:
     image: mediawiki
-    #restart: always
+    restart: always
+    container_name: mediawiki
     links:
       - db
     ports:
       - "8001:80"
     volumes:
-      - ./images:/var/www/html/images
-      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./mediawiki/data/images:/var/www/html/images
+      #- ./LocalSettings.php:/var/www/html/LocalSettings.php
   db:
     image: mariadb
-    #restart: always
+    restart: always
+    container_name: wiki_db
     expose:
       - "3306"
     environment:
@@ -61,4 +71,4 @@ services:
     # fix for volume issues on Docker for Windows
     command: mysqld --innodb-flush-method=fsync
     volumes:
-      - ./db:/var/lib/mysql
+      - ./mediawiki/data/db:/var/lib/mysql
