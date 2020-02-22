@@ -92,7 +92,9 @@ services:
       - "8001:80"
     volumes:
       - ./mediawiki/data/images:/var/www/html/images
-      #- ./LocalSettings.php:/var/www/html/LocalSettings.php
+      # After the initial configuration, download LocalSettings.php and copy it to the mediawiki directory
+      # then uncomment the following line and use compose to restart the mediawiki service 
+      #- ./mediawiki/LocalSettings.php:/var/www/html/LocalSettings.php
   db:
     image: mariadb
     restart: always
@@ -111,7 +113,21 @@ services:
     volumes:
       - ./mediawiki/data/db:/var/lib/mysql
 
-
+  web:
+    container_name: web
+    build:
+      context: nginx/
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    command: /bin/sh -c "envsubst 'localhost' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"    
+    volumes:
+       - ./nginx/etc/default.conf:/etc/nginx/conf.d/default.conf
+       - ./nginx/etc/ssl:/etc/ssl
+       - ./nginx/web:/var/www/html
+       - ./nginx/etc/default.template.conf:/etc/nginx/conf.d/default.template    
+     
 networks:
   sonarnet:
   wikinet:
