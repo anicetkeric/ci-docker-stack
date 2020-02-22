@@ -28,6 +28,6 @@ Access Tools
 | ------------- | ------------- | ------------- |
 | Jenkins | http://localhost:8080/ | no login required |
 | SonarQube | http://localhost:9000/ | admin/admin |
-| Portainer | http://localhost:8000/ | no login required |
+| Portainer | http://localhost:8000/ | admin/adminpassword@@ |
 | mediawiki | http://localhost:8001/ | no login required |
 
