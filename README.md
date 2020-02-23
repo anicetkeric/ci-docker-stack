@@ -30,4 +30,4 @@ Access Tools
 | SonarQube | http://localhost:9000/ | admin/admin |
 | Portainer | http://localhost:8000/ | admin/adminpassword@@ |
 | mediawiki | http://localhost:8001/ | no login required |
-
+| nginx  | http://localhost | no login required |
