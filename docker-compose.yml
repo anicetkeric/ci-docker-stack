@@ -121,12 +121,14 @@ services:
     ports:
       - 80:80
       - 443:443
-    command: /bin/sh -c "envsubst 'localhost' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"    
+    environment:
+      NGINX_HOST: localhost    
+    command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"  
     volumes:
        - ./nginx/etc/default.conf:/etc/nginx/conf.d/default.conf
        - ./nginx/etc/ssl:/etc/ssl
-       - ./nginx/web:/var/www/html
-       - ./nginx/etc/default.template.conf:/etc/nginx/conf.d/default.template    
+       - ./nginx/web:/usr/share/nginx/html
+       - ./nginx/etc/default.template.conf:/etc/nginx/conf.d/default.template     
      
 networks:
   sonarnet:
