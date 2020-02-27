@@ -1,5 +1,5 @@
 # ci-docker-stack
-Docker Compose builds Jenkins , Sonar, Portainer, mediawiki
+Docker Compose builds Jenkins , Sonar, Portainer, mediawiki, nginx
 
 Pre-Requisites
 -------------
